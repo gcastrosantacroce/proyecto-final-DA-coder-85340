@@ -17,7 +17,7 @@ En este proyecto, analizaremos los datos olímpicos con el objetivo de descubrir
 
 Finalmente, los conocimientos obtenidos del análisis, se presentaran en un panel interactivo, que permita la exploración visual de tendencias y patrones olímpicos claves.
 
-### Detalle del Datasetadvadvbadvb
+### Detalle del Dataset
 
 El archivo principal, atleta_events.csv, contiene 15 columnas que detallan el desempeño de los atletas individuales en varios eventos durante los Juegos de verano e invierno. La información clave incluye:
 •	ID: Identificador único para cada deportista
