@@ -66,6 +66,57 @@ El archivo principal, atleta_events.csv, contiene 15 columnas que detallan el de
 +------------------------+     +------------------------+     +------------------------+     |                        |
 
 ```
+## DIAGRAMA ENTIDAD RELACIÓN (DER):
+
+### Diagrama de Entidad Relación Simplificado:
+
++-----------------+       +----------------+      +----------------+   
+|     Atleta      |       |     Juego      |      |    Deporte     |   
++-----------------+       +----------------+      +----------------+   
+| ID (PK)         |<--+   | ID_Juego (PK)  |<--+  | ID_Deporte (PK)|
+| Name            |    |   | Games          |    |  | Sport          |
+| Sex             |    |   | Year           |    |  +----------------+
+| Age             |    |   | Season         |    |  
+| Height          |    |   | City           |    |  
+| Weight          |    |   +----------------+    |  
+| Team            |    |          ^              |  
+| NOC             |    |          |              |  
++-----------------+    |          |              |  
+                       |          |              |  
+                       |          |              |  
++------------------+   |   +------------------+  |  
+|     Evento       |<--+   |     Medalla      |  |  
++------------------+       +------------------+  |  
+| ID_Evento (PK)   |       | ID_Medalla (PK)  |  |  
+| Event            |       | Medal            |  |  
++------------------+       +------------------+  |  
+                       |                         |  
+                       |                         |  
+              +---------------------+           |  
+              |   Atleta_Juego       |<----------+  
+              +---------------------+  
+              | ID_Atleta (FK)       |  
+              | ID_Juego (FK)        |  
+              +---------------------+  
+                       |                         
+                       |                         
+              +---------------------+           
+              |   Atleta_Evento      |           
+              +---------------------+           
+              | ID_Atleta (FK)       |           
+              | ID_Evento (FK)       |           
+              +---------------------+           
+                       |                         
+                       |                         
+              +---------------------+           
+              |   Atleta_Medalla     |           
+              +---------------------+           
+              | ID_Atleta (FK)       |           
+              | ID_Medalla (FK)      |           
+              +---------------------+           
+
+
+
 
 ### Descripción del Diagrama:
 
@@ -101,25 +152,25 @@ El archivo principal, atleta_events.csv, contiene 15 columnas que detallan el de
    - **Medal** (Podría ser "Gold", "Silver", "Bronze" o "NA")  
 
     
-- **ATLETA**: Representa a los atletas que participaron en los juegos. Atributos importantes: `ID`, `Name`, `Sex`, `Age`, `Height`, `Weight`, `Team`, `NOC`.
-- **JUEGO**: Representa los juegos olímpicos. Atributos importantes: `ID_Juego`, `Games`, `Year`, `Season`, `City`.
-- **DEPORTE**: Representa los deportes de los juegos olímpicos. Atributos importantes: `ID_Deporte`, `Sport`.
-- **EVENTO**: Representa los eventos dentro de un juego olímpico (por ejemplo, "100 metros" en atletismo). Atributos importantes: `ID_Evento`, `Event`.
-- **MEDALLA**: Representa los tipos de medallas ganadas en los eventos. Atributos importantes: `ID_Medalla`, `Medal`.
+- **Atleta**: Representa a los atletas que participaron en los juegos. Atributos importantes: `ID`, `Name`, `Sex`, `Age`, `Height`, `Weight`, `Team`, `NOC`.
+- **Juego**: Representa los juegos olímpicos. Atributos importantes: `ID_Juego`, `Games`, `Year`, `Season`, `City`.
+- **Deporte**: Representa los deportes de los juegos olímpicos. Atributos importantes: `ID_Deporte`, `Sport`.
+- **Evento**: Representa los eventos dentro de un juego olímpico (por ejemplo, "100 metros" en atletismo). Atributos importantes: `ID_Evento`, `Event`.
+- **Medalla**: Representa los tipos de medallas ganadas en los eventos. Atributos importantes: `ID_Medalla`, `Medal`.
 
 
 ### Relaciones:
 
-   - **ATLETA_JUEGO**: Relaciona a los atletas con los juegos en los que participaron. Relaciona las claves foráneas `ID_Atleta` y `ID_Juego`.
-   - **ATLETA_EVENTO**: Relaciona a los atletas con los eventos en los que participaron. Relaciona las claves foráneas `ID_Atleta` y `ID_Evento`.
-   - **ATLETA_MEDALLA**: Relaciona a los atletas con las medallas que ganaron. Relaciona las claves foráneas `ID_Atleta` y `ID_Medalla`.
+   - **Atleta_Juego**: Relaciona a los atletas con los juegos en los que participaron. Relaciona las claves foráneas `ID_Atleta` y `ID_Juego`.
+   - **Atleta_Evento**: Relaciona a los atletas con los eventos en los que participaron. Relaciona las claves foráneas `ID_Atleta` y `ID_Evento`.
+   - **Atleta_Medalla**: Relaciona a los atletas con las medallas que ganaron. Relaciona las claves foráneas `ID_Atleta` y `ID_Medalla`.
 
     Ejemplos:
 
-    - **ATLETA** tiene una relación con **JUEGO**, **EVENTO** y **MEDALLA** a través de las tablas de relación **ATLETA_JUEGO**, **ATLETA_EVENTO** y **ATLETA_MEDALLA**.
-    - Cada **JUEGO** tiene muchos **ATLETAS** (relación muchos a muchos).
-    - Cada **EVENTO** puede tener muchos **ATLETAS** (relación muchos a muchos).
-    - Un **ATLETA** puede ganar varias **MEDALLAS** (relación muchos a muchos).
+    - **Atleta** tiene una relación con **Juego**, **Evento** y **Medalla** a través de las tablas de relación **Atleta_Juego**, **Atleta_evento** y **Atleta_Medalla**.
+    - Cada **Juego** tiene muchos **Atletas** (relación muchos a muchos).
+    - Cada **Evento** puede tener muchos **Atletas** (relación muchos a muchos).
+    - Un **Atleta** puede ganar varias **Medallas** (relación muchos a muchos).
 
 ### Ejemplos de relaciones:
 
@@ -195,6 +246,37 @@ Descripción detallada de las **tablas**, sus **atributos** y las **relaciones**
      - **ID_Medalla**: Identificador único de la medalla (clave primaria).
      - **Medal**: Tipo de medalla (por ejemplo, "Gold", "Silver", "Bronze", o "NA" si no ganó medalla).
 
+### 6. **Tabla: Atleta_Juego**
+   - **Descripción**: Esta tabla almacena la relación entre los atletas y los juegos olímpicos en los que participan. Representa una relación muchos a muchos entre **Atleta** y **Juego**.
+   - **Atributos**:
+   - **ID_Atleta (FK)**: Identificador único del atleta (clave foránea que hace referencia a la tabla **Atleta**).
+   - **ID_Juego (FK)**: Identificador único del juego olímpico (clave foránea que hace referencia a la tabla **Juego**).
+
+   - **Relación**:
+   - Un atleta puede participar en múltiples juegos olímpicos, y un juego olímpico puede tener muchos atletas participantes.
+
+### 7. **Tabla: Atleta_Evento**
+   - **Descripción**: Esta tabla almacena la relación entre los atletas y los eventos en los que compiten dentro de un juego olímpico. Representa una relación muchos a muchos entre **Atleta** y **Evento**.
+   - **Atributos**:
+   - **ID_Atleta (FK)**: Identificador único del atleta (clave foránea que hace referencia a la tabla **Atleta**).
+   - **ID_Evento (FK)**: Identificador único del evento olímpico en el que el atleta participa (clave foránea que hace referencia a la tabla **Evento**).
+
+   - **Relación**:
+   - Un atleta puede competir en múltiples eventos, y un evento puede tener muchos atletas participantes.
+
+### 8. **Tabla: Atleta_Medalla**
+   - **Descripción**: Esta tabla almacena la relación entre los atletas y las medallas que ganan en los eventos olímpicos. Representa una relación muchos a muchos entre **Atleta** y **Medalla**.
+
+   - **Atributos**:
+   - **ID_Atleta (FK)**: Identificador único del atleta (clave foránea que hace referencia a la tabla **Atleta**).
+   - **ID_Medalla (FK)**: Identificador único de la medalla que ha ganado el atleta (clave foránea que hace referencia a la tabla **Medalla**).
+
+   - **Relación**:
+   - Un atleta puede ganar múltiples medallas en diferentes eventos, y una medalla puede ser ganada por varios atletas (en algunos eventos, podría haber empates o equipos ganadores).
+
+
+Estas tablas son importantes para gestionar las relaciones complejas entre atletas, juegos, eventos y medallas, y permiten realizar consultas detalladas sobre la participación de los atletas en los juegos olímpicos y su desempeño en los diferentes eventos.
+
 ---
 
 ### **Relaciones entre las tablas**:
@@ -202,7 +284,7 @@ Descripción detallada de las **tablas**, sus **atributos** y las **relaciones**
 1. **Atleta participa en Juego**:
    - **Tipo de relación**: Muchos a Muchos.
    - **Descripción**: Un atleta puede participar en varios juegos olímpicos, y un juego olímpico puede tener muchos atletas participando.
-   - **Implementación**: Para representar esta relación en la base de datos, se utiliza una tabla intermedia llamada **Atleta_Juego**, que tiene las claves foráneas de **ID (Atleta)** e **ID Juego**.
+   - **Implementación**: Para representar esta relación en la base de datos, se utiliza una tabla intermedia llamada **Atleta_Juego**, que tiene las claves foráneas de **ID (Atleta)** e **ID_Juego**.
 
 2. **Juego tiene Deporte**:
    - **Tipo de relación**: Uno a Muchos.
@@ -212,7 +294,7 @@ Descripción detallada de las **tablas**, sus **atributos** y las **relaciones**
 3. **Atleta compite en Evento**:
    - **Tipo de relación**: Muchos a Muchos.
    - **Descripción**: Un atleta puede competir en varios eventos dentro de un juego, y un evento puede tener varios atletas participando.
-   - **Implementación**: Esta relación se maneja mediante una tabla intermedia llamada **Atleta_Evento**, que incluye las claves foráneas de **ID Atleta** e **ID Evento**.
+   - **Implementación**: Esta relación se maneja mediante una tabla intermedia llamada **Atleta_Evento**, que incluye las claves foráneas de **ID_Atleta** e **ID_Evento**.
 
 4. **Atleta recibe Medalla**:
    - **Tipo de relación**: Uno a Muchos.
