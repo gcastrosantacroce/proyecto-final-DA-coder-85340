@@ -70,6 +70,7 @@ El archivo principal, atleta_events.csv, contiene 15 columnas que detallan el de
 
 ### Diagrama de Entidad Relación Simplificado:
 
+```
 +-----------------+       +----------------+      +----------------+   
 |     Atleta      |       |     Juego      |      |    Deporte     |   
 +-----------------+       +----------------+      +----------------+   
@@ -114,7 +115,7 @@ El archivo principal, atleta_events.csv, contiene 15 columnas que detallan el de
               | ID_Atleta (FK)       |           
               | ID_Medalla (FK)      |           
               +---------------------+           
-
+```
 
 
 
@@ -246,33 +247,33 @@ Descripción detallada de las **tablas**, sus **atributos** y las **relaciones**
      - **ID_Medalla**: Identificador único de la medalla (clave primaria).
      - **Medal**: Tipo de medalla (por ejemplo, "Gold", "Silver", "Bronze", o "NA" si no ganó medalla).
 
-### 6. **Tabla: Atleta_Juego**
+### 6. **Tabla: Atleta_Juego (Tabla Intermedia)**
    - **Descripción**: Esta tabla almacena la relación entre los atletas y los juegos olímpicos en los que participan. Representa una relación muchos a muchos entre **Atleta** y **Juego**.
    - **Atributos**:
-   - **ID_Atleta (FK)**: Identificador único del atleta (clave foránea que hace referencia a la tabla **Atleta**).
-   - **ID_Juego (FK)**: Identificador único del juego olímpico (clave foránea que hace referencia a la tabla **Juego**).
+      - **ID_Atleta (FK)**: Identificador único del atleta (clave foránea que hace referencia a la tabla **Atleta**).
+      - **ID_Juego (FK)**: Identificador único del juego olímpico (clave foránea que hace referencia a la tabla **Juego**).
 
    - **Relación**:
-   - Un atleta puede participar en múltiples juegos olímpicos, y un juego olímpico puede tener muchos atletas participantes.
+      - Un atleta puede participar en múltiples juegos olímpicos, y un juego olímpico puede tener muchos atletas participantes.
 
-### 7. **Tabla: Atleta_Evento**
+### 7. **Tabla: Atleta_Evento (Tabla Intermedia)**
    - **Descripción**: Esta tabla almacena la relación entre los atletas y los eventos en los que compiten dentro de un juego olímpico. Representa una relación muchos a muchos entre **Atleta** y **Evento**.
    - **Atributos**:
-   - **ID_Atleta (FK)**: Identificador único del atleta (clave foránea que hace referencia a la tabla **Atleta**).
-   - **ID_Evento (FK)**: Identificador único del evento olímpico en el que el atleta participa (clave foránea que hace referencia a la tabla **Evento**).
+      - **ID_Atleta (FK)**: Identificador único del atleta (clave foránea que hace referencia a la tabla **Atleta**).
+      - **ID_Evento (FK)**: Identificador único del evento olímpico en el que el atleta participa (clave foránea que hace referencia a la tabla **Evento**).
 
    - **Relación**:
-   - Un atleta puede competir en múltiples eventos, y un evento puede tener muchos atletas participantes.
+      - Un atleta puede competir en múltiples eventos, y un evento puede tener muchos atletas participantes.
 
-### 8. **Tabla: Atleta_Medalla**
+### 8. **Tabla: Atleta_Medalla (Tabla Intermedia)**
    - **Descripción**: Esta tabla almacena la relación entre los atletas y las medallas que ganan en los eventos olímpicos. Representa una relación muchos a muchos entre **Atleta** y **Medalla**.
 
    - **Atributos**:
-   - **ID_Atleta (FK)**: Identificador único del atleta (clave foránea que hace referencia a la tabla **Atleta**).
-   - **ID_Medalla (FK)**: Identificador único de la medalla que ha ganado el atleta (clave foránea que hace referencia a la tabla **Medalla**).
+      - **ID_Atleta (FK)**: Identificador único del atleta (clave foránea que hace referencia a la tabla **Atleta**).
+      - **ID_Medalla (FK)**: Identificador único de la medalla que ha ganado el atleta (clave foránea que hace referencia a la tabla **Medalla**).
 
    - **Relación**:
-   - Un atleta puede ganar múltiples medallas en diferentes eventos, y una medalla puede ser ganada por varios atletas (en algunos eventos, podría haber empates o equipos ganadores).
+      - Un atleta puede ganar múltiples medallas en diferentes eventos, y una medalla puede ser ganada por varios atletas (en algunos eventos, podría haber empates o equipos ganadores).
 
 
 Estas tablas son importantes para gestionar las relaciones complejas entre atletas, juegos, eventos y medallas, y permiten realizar consultas detalladas sobre la participación de los atletas en los juegos olímpicos y su desempeño en los diferentes eventos.
@@ -347,7 +348,7 @@ Este es el diseño general de la base de datos, sus tablas y las relaciones. Con
    - **Medal**: `VARCHAR(20)` (Cadena de texto). Tipo de medalla (por ejemplo, "Gold", "Silver", "Bronze", o "NA" si no se ganó medalla).
 
 
-### **Relaciones entre las tablas**:
+### **Relaciones entre las tablas y las tablas intermedias**:
 
 1. **Atleta participa en Juego (Atleta_Juego)**
    - **ID_Atleta**: `INT` (Entero). Clave foránea que hace referencia a **ID** en la tabla **Atleta**.
@@ -379,23 +380,23 @@ Este es el diseño general de la base de datos, sus tablas y las relaciones. Con
 |                  | **Weight**           | `INT`               | Peso del atleta en kilogramos.                                                  |                          |
 |                  | **Team**             | `VARCHAR(255)`      | Nombre del equipo o país al que pertenece el atleta.                           |                          |
 |                  | **NOC**              | `CHAR(3)`           | Código del Comité Olímpico Nacional del atleta (por ejemplo, "USA" para EE.UU.).|                          |
-| **Juego**        | **ID Juego**         | `INT`               | Identificador único del juego, clave primaria.                                  | **PK**                   |
+| **Juego**        | **ID_Juego**         | `INT`               | Identificador único del juego, clave primaria.                                  | **PK**                   |
 |                  | **Games**            | `VARCHAR(255)`      | Nombre del evento o edición de los juegos (por ejemplo, "1992 Summer").         |                          |
 |                  | **Year**             | `INT`               | Año en el que se celebraron los juegos olímpicos.                               |                          |
 |                  | **Season**           | `VARCHAR(10)`       | Temporada del evento (puede ser "Summer" o "Winter").                           |                          |
 |                  | **City**             | `VARCHAR(255)`      | Ciudad donde se celebraron los juegos olímpicos.                                |                          |
-| **Deporte**      | **ID Deporte**       | `INT`               | Identificador único del deporte, clave primaria.                                | **PK**                   |
+| **Deporte**      | **ID_Deporte**       | `INT`               | Identificador único del deporte, clave primaria.                                | **PK**                   |
 |                  | **Sport**            | `VARCHAR(255)`      | Nombre del deporte (por ejemplo, "Basketball", "Judo").                         |                          |
-| **Evento**       | **ID Evento**        | `INT`               | Identificador único del evento, clave primaria.                                 | **PK**                   |
+| **Evento**       | **ID_Evento**        | `INT`               | Identificador único del evento, clave primaria.                                 | **PK**                   |
 |                  | **Event**            | `VARCHAR(255)`      | Descripción del evento (por ejemplo, "Basketball Men's Basketball").             |                          |
-| **Medalla**      | **ID Medalla**       | `INT`               | Identificador único de la medalla, clave primaria.                              | **PK**                   |
+| **Medalla**      | **ID_Medalla**       | `INT`               | Identificador único de la medalla, clave primaria.                              | **PK**                   |
 |                  | **Medal**            | `VARCHAR(20)`       | Tipo de medalla (por ejemplo, "Gold", "Silver", "Bronze", o "NA" si no se ganó).|                          |
-| **Atleta_Juego** | **ID Atleta**        | `INT`               | Clave foránea que hace referencia a la tabla **Atleta** (ID Atleta).             | **FK**                   |
-|                  | **ID Juego**         | `INT`               | Clave foránea que hace referencia a la tabla **Juego** (ID Juego).               | **FK**                   |
-| **Atleta_Evento**| **ID Atleta**        | `INT`               | Clave foránea que hace referencia a la tabla **Atleta** (ID Atleta).             | **FK**                   |
-|                  | **ID Evento**        | `INT`               | Clave foránea que hace referencia a la tabla **Evento** (ID Evento).             | **FK**                   |
-| **Atleta_Medalla**| **ID Atleta**       | `INT`               | Clave foránea que hace referencia a la tabla **Atleta** (ID Atleta).             | **FK**                   |
-|                  | **ID Medalla**       | `INT`               | Clave foránea que hace referencia a la tabla **Medalla** (ID Medalla).           | **FK**                   |
+| **Atleta_Juego** | **ID_Atleta**        | `INT`               | Clave foránea que hace referencia a la tabla **Atleta** (ID_Atleta).             | **FK**                   |
+|                  | **ID_Juego**         | `INT`               | Clave foránea que hace referencia a la tabla **Juego** (ID Juego).               | **FK**                   |
+| **Atleta_Evento**| **ID_Atleta**        | `INT`               | Clave foránea que hace referencia a la tabla **Atleta** (ID Atleta).             | **FK**                   |
+|                  | **ID_Evento**        | `INT`               | Clave foránea que hace referencia a la tabla **Evento** (ID_Evento).             | **FK**                   |
+| **Atleta_Medalla**| **ID_Atleta**       | `INT`               | Clave foránea que hace referencia a la tabla **Atleta** (ID_Atleta).             | **FK**                   |
+|                  | **ID_Medalla**       | `INT`               | Clave foránea que hace referencia a la tabla **Medalla** (ID_Medalla).           | **FK**                   |
 
 ### Descripción de las **Claves**:
 - **PK (Primary Key)**: Indica que el atributo es la **clave primaria** de la tabla, lo que significa que debe ser único y no nulo.
