@@ -51,7 +51,7 @@ El archivo principal, atleta_events.csv, contiene 15 columnas que detallan el de
 |     | Sex           |     |     | Year           |     |                   |     |                   |     |                   |
 |     | Age           |     |     | Season         |     |                   |     |                   |     |                   |
 |     | Height        |     |     | City           |     |                   |     |                   |     |                   |
-|     | Weight        |     |                     |     |                   |     |                   |     |                   |
+|     | Weight        |     |                      |     |                   |     |                   |     |                   |
 |     | Team          |     |                     |     |                   |     |                   |     |                   |
 |     | NOC           |     |                     |     |                   |     |                   |     |                   |
 +---------------------+     +----------------------+     +-------------------+     +-------------------+     +-------------------+
@@ -100,12 +100,12 @@ El archivo principal, atleta_events.csv, contiene 15 columnas que detallan el de
    - **ID_Medalla** (Clave primaria)
    - **Medal** (Podría ser "Gold", "Silver", "Bronze" o "NA")  
 
-
-   - **ATLETA**: Representa a los atletas que participaron en los juegos. Atributos importantes: `ID`, `Name`, `Sex`, `Age`, `Height`, `Weight`, `Team`, `NOC`.
-   - **JUEGO**: Representa los juegos olímpicos. Atributos importantes: `ID_Juego`, `Games`, `Year`, `Season`, `City`.
-   - **DEPORTE**: Representa los deportes de los juegos olímpicos. Atributos importantes: `ID_Deporte`, `Sport`.
-   - **EVENTO**: Representa los eventos dentro de un juego olímpico (por ejemplo, "100 metros" en atletismo). Atributos importantes: `ID_Evento`, `Event`.
-   - **MEDALLA**: Representa los tipos de medallas ganadas en los eventos. Atributos importantes: `ID_Medalla`, `Medal`.
+    
+- **ATLETA**: Representa a los atletas que participaron en los juegos. Atributos importantes: `ID`, `Name`, `Sex`, `Age`, `Height`, `Weight`, `Team`, `NOC`.
+- **JUEGO**: Representa los juegos olímpicos. Atributos importantes: `ID_Juego`, `Games`, `Year`, `Season`, `City`.
+- **DEPORTE**: Representa los deportes de los juegos olímpicos. Atributos importantes: `ID_Deporte`, `Sport`.
+- **EVENTO**: Representa los eventos dentro de un juego olímpico (por ejemplo, "100 metros" en atletismo). Atributos importantes: `ID_Evento`, `Event`.
+- **MEDALLA**: Representa los tipos de medallas ganadas en los eventos. Atributos importantes: `ID_Medalla`, `Medal`.
 
 
 ### Relaciones:
@@ -114,11 +114,12 @@ El archivo principal, atleta_events.csv, contiene 15 columnas que detallan el de
    - **ATLETA_EVENTO**: Relaciona a los atletas con los eventos en los que participaron. Relaciona las claves foráneas `ID_Atleta` y `ID_Evento`.
    - **ATLETA_MEDALLA**: Relaciona a los atletas con las medallas que ganaron. Relaciona las claves foráneas `ID_Atleta` y `ID_Medalla`.
 
+    Ejemplos:
 
-- **ATLETA** tiene una relación con **JUEGO**, **EVENTO** y **MEDALLA** a través de las tablas de relación **ATLETA_JUEGO**, **ATLETA_EVENTO** y **ATLETA_MEDALLA**.
-- Cada **JUEGO** tiene muchos **ATLETAS** (relación muchos a muchos).
-- Cada **EVENTO** puede tener muchos **ATLETAS** (relación muchos a muchos).
-- Un **ATLETA** puede ganar varias **MEDALLAS** (relación muchos a muchos).
+    - **ATLETA** tiene una relación con **JUEGO**, **EVENTO** y **MEDALLA** a través de las tablas de relación **ATLETA_JUEGO**, **ATLETA_EVENTO** y **ATLETA_MEDALLA**.
+    - Cada **JUEGO** tiene muchos **ATLETAS** (relación muchos a muchos).
+    - Cada **EVENTO** puede tener muchos **ATLETAS** (relación muchos a muchos).
+    - Un **ATLETA** puede ganar varias **MEDALLAS** (relación muchos a muchos).
 
 ### Ejemplos de relaciones:
 
@@ -151,7 +152,7 @@ El archivo principal, atleta_events.csv, contiene 15 columnas que detallan el de
 
 ---
 
-### Listado de las tablas que comprenden la base de datos
+## Listado de las tablas que comprenden la base de datos
 
 Descripción detallada de las **tablas**, sus **atributos** y las **relaciones** que conforman el **Diagrama Entidad-Relación**:
 
