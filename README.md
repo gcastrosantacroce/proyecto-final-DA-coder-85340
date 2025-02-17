@@ -58,10 +58,10 @@ El archivo principal, atleta_events.csv, contiene 15 columnas que detallan el de
                        |          |              |  
 +------------------+   |   +------------------+  |  
 |     Evento       |<--+   |     Medalla      |  |  
-+------------------+       +------------------+  |  
-| ID_Evento (PK)   |       | ID_Medalla (PK)  |  |  
-| Event            |       | Medal            |  |  
-+------------------+       +------------------+  |  
++------------------+   |   +------------------+  |  
+| ID_Evento (PK)   |   |   | ID_Medalla (PK)  |  |  
+| Event            |   |   | Medal            |  |  
++------------------+   |   +------------------+  |  
                        |                         |  
                        |                         |  
               +----------------------+           |  
@@ -354,8 +354,8 @@ Este es el diseño general de la base de datos, sus tablas y las relaciones. Con
 | **Medalla**      | **ID_Medalla**       | `INT`               | Identificador único de la medalla, clave primaria.                              | **PK**                   |
 |                  | **Medal**            | `VARCHAR(20)`       | Tipo de medalla (por ejemplo, "Gold", "Silver", "Bronze", o "NA" si no se ganó).|                          |
 | **Atleta_Juego** | **ID_Atleta**        | `INT`               | Clave foránea que hace referencia a la tabla **Atleta** (ID_Atleta).             | **FK**                   |
-|                  | **ID_Juego**         | `INT`               | Clave foránea que hace referencia a la tabla **Juego** (ID Juego).               | **FK**                   |
-| **Atleta_Evento**| **ID_Atleta**        | `INT`               | Clave foránea que hace referencia a la tabla **Atleta** (ID Atleta).             | **FK**                   |
+|                  | **ID_Juego**         | `INT`               | Clave foránea que hace referencia a la tabla **Juego** (ID_Juego).               | **FK**                   |
+| **Atleta_Evento**| **ID_Atleta**        | `INT`               | Clave foránea que hace referencia a la tabla **Atleta** (ID_Atleta).             | **FK**                   |
 |                  | **ID_Evento**        | `INT`               | Clave foránea que hace referencia a la tabla **Evento** (ID_Evento).             | **FK**                   |
 | **Atleta_Medalla**| **ID_Atleta**       | `INT`               | Clave foránea que hace referencia a la tabla **Atleta** (ID_Atleta).             | **FK**                   |
 |                  | **ID_Medalla**       | `INT`               | Clave foránea que hace referencia a la tabla **Medalla** (ID_Medalla).           | **FK**                   |
