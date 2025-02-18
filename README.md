@@ -250,7 +250,7 @@ Estas tablas son importantes para gestionar las relaciones complejas entre atlet
 1. **Atleta participa en Juego**:
    - **Tipo de relación**: Muchos a Muchos.
    - **Descripción**: Un atleta puede participar en varios juegos olímpicos, y un juego olímpico puede tener muchos atletas participando.
-   - **Implementación**: Para representar esta relación en la base de datos, se utiliza una tabla intermedia llamada **Atleta_Juego**, que tiene las claves foráneas de **ID (Atleta)** e **ID_Juego**.
+   - **Implementación**: Para representar esta relación en la base de datos, se utiliza una tabla intermedia llamada **Atleta_Juego**, que tiene las claves foráneas de **ID_Atleta** e **ID_Juego**.
 
 2. **Juego tiene Deporte**:
    - **Tipo de relación**: Uno a Muchos.
